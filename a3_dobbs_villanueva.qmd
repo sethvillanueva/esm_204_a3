@@ -1,22 +1,37 @@
 ---
 title: "a3_dobbs_villanueva"
-format: html
+format: 
+  html:
+    code-fold: true
+    toc: true
+    theme: darkly #flatly, superhero, lumen
+knitr:
+  opts_chunk: 
+    code-line-numbers: true
 editor: visual
 jupyter: python3
 ---
 
 ## Assignment 3
 
-```{python}
-1 + 1
-```
-
-```{r}
+```{r, results = 'hide', message=FALSE}
 
 library(tidyverse)
 library(here)
+
 ```
 
 ```{r}
-ev_dac_data <- read_csv(here('data', 'HW3_data.csv'))
+ev_dac_data <- read_csv(here('data', 'HW3_data.csv')) %>% janitor::clean_names()
+```
+
+```{r}
+
+demand_dac <- lm(price_dollars ~ q_dac, data = ev_dac_data)
+demand_nondac <- lm(price_dollars ~ q_non_dac, data = ev_dac_data)
+
+ggplot(data = ev_dac_data, aes(x = q_dac, y = price_dollars))  +
+  geom_point() + 
+  stat_smooth(aes(x = q_dac, y = price_dollars), method = 'lm', col = 'red') +
+  stat_smooth(aes(x = q_non_dac, y = price_dollars), method = 'lm', col = 'blue')
 ```
