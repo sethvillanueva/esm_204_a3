@@ -221,7 +221,18 @@ cs_nondac_no_int
 ```
 
 ```{r}
-cs_dac_no_int + cs_nondac_no_int
+cs_dac_both <- cs_dac_no_int + cs_nondac_no_int
+
+cs_dac_both
+```
+
+```{r}
+cs_dac_percent = cs_dac_no_int/cs_dac_both
+cs_dac_percent
+
+cs_nondac_percent = cs_nondac_no_int/cs_dac_both
+cs_nondac_percent
+
 ```
 
 ### 5.
