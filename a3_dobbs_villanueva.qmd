@@ -45,6 +45,8 @@ $$\begin{aligned}
 
 These differences in demand could be a result of a willingness to pay to avoid transportation pollution by
 
+-   nonDACs have higher marginal benefit across all quantities than DACs (higher intercept and shallower slope)
+
 ```{r}
 ggplot(data = ev_dac_data, aes(x = q_dac, y = price_dollars))  +
   geom_point() + 
@@ -54,3 +56,130 @@ ggplot(data = ev_dac_data, aes(x = q_non_dac, y = price_dollars))  +
   geom_point() + 
   stat_smooth(aes(x = q_non_dac, y = price_dollars), method = 'lm', col = 'blue')
 ```
+
+### 2.
+
+```{r}
+mec_per_ev = 300 * 63
+
+mec_per_ev
+```
+
+$$\begin{aligned}
+\\
+&MEC_{EV} = 18900 \\
+\\
+\end{aligned}$$
+
+### 3.
+
+```{r}
+
+evs_agg_demand <- ev_dac_data %>% 
+  mutate(q_agg = q_dac + q_non_dac)
+
+demand_agg <- lm(price_dollars ~ q_agg, data = evs_agg_demand)
+demand_agg
+
+```
+
+```{r}
+
+agg_fn <- function(Q){
+  P = (-2.043 * Q) + 150021
+  return(P)
+}
+
+agg_fn_q_from_p <- function(P){
+  Q = ((-1/2.043) * P) + (150021/2.043)
+  return(Q)
+}
+
+q_star_no_int <- agg_fn_q_from_p(50000)
+q_star_no_int
+```
+
+```{r}
+
+supply_fn <- function(Q){
+  P = (50000/q_star_no_int) * Q
+}
+
+```
+
+```{r}
+
+cs = pracma::integral(fun = function(x) agg_fn(x), xmin = 0, xmax = q_star_no_int) - (q_star_no_int*50000)
+cs
+
+ps = (q_star_no_int*50000) / 2
+ps
+
+```
+
+```{r}
+
+env_cost_q_star_no_int = mec_per_ev * q_star_no_int
+env_cost_q_star_no_int
+
+```
+
+```{r}
+
+agg_demand_plot <- ggplot(data = evs_agg_demand, aes(x = q_agg, y = price_dollars)) +
+  geom_point() +
+  theme_bw()
+
+
+agg_demand_plot
+```
+
+### 4.
+
+```{r}
+
+dac_demand_fn <- function(Q){
+  P = (demand_dac$coefficients[2] * Q) + demand_dac$coefficients[1]
+  return(P)
+}
+
+dac_demand_fn_q_from_p <- function(P){
+  Q = ((1/demand_dac$coefficients[2]) * P) + (demand_dac$coefficients[1]/(-demand_dac$coefficients[2]))
+  return(Q)
+}
+
+dac_q_star_no_int <- dac_demand_fn_q_from_p(50000)
+dac_q_star_no_int
+
+
+cs_dac_no_int = pracma::integral(fun = function(x) dac_demand_fn(x), xmin = 0, xmax = dac_q_star_no_int) - (dac_q_star_no_int*50000)
+cs_dac_no_int
+
+```
+
+```{r}
+nondac_demand_fn <- function(Q){
+  P = (demand_nondac$coefficients[2] * Q) + demand_nondac$coefficients[1]
+  return(P)
+}
+
+nondac_demand_fn_q_from_p <- function(P){
+  Q = ((1/demand_nondac$coefficients[2]) * P) + (demand_nondac$coefficients[1]/(-demand_nondac$coefficients[2]))
+  return(Q)
+}
+
+nondac_q_star_no_int <- nondac_demand_fn_q_from_p(50000)
+nondac_q_star_no_int
+
+
+cs_nondac_no_int = pracma::integral(fun = function(x) nondac_demand_fn(x), xmin = 0, xmax = nondac_q_star_no_int) - (nondac_q_star_no_int*50000)
+cs_nondac_no_int
+```
+
+```{r}
+cs_dac_no_int + cs_nondac_no_int
+```
+
+### 5. 
+
+Optimal tax is equal to the MEC(Q\*), and since MEC = 18900 as a constant, the optimal tax will be \$18900 per EV.
