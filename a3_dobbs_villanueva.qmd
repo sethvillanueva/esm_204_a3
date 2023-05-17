@@ -25,13 +25,32 @@ library(here)
 ev_dac_data <- read_csv(here('data', 'HW3_data.csv')) %>% janitor::clean_names()
 ```
 
+### 1.
+
 ```{r}
 
 demand_dac <- lm(price_dollars ~ q_dac, data = ev_dac_data)
 demand_nondac <- lm(price_dollars ~ q_non_dac, data = ev_dac_data)
 
+demand_dac
+demand_nondac
+```
+
+$$\begin{aligned}
+\\
+&D_{DAC} = -6.611*Q_{EVs} + 116855 \\
+&D_{nonDAC} = -2.731*Q_{EVs} + 158034 \\
+\\
+\end{aligned}$$
+
+These differences in demand could be a result of a willingness to pay to avoid transportation pollution by
+
+```{r}
 ggplot(data = ev_dac_data, aes(x = q_dac, y = price_dollars))  +
   geom_point() + 
-  stat_smooth(aes(x = q_dac, y = price_dollars), method = 'lm', col = 'red') +
+  stat_smooth(aes(x = q_dac, y = price_dollars), method = 'lm', col = 'red')
+
+ggplot(data = ev_dac_data, aes(x = q_non_dac, y = price_dollars))  +
+  geom_point() + 
   stat_smooth(aes(x = q_non_dac, y = price_dollars), method = 'lm', col = 'blue')
 ```
