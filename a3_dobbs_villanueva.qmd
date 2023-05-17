@@ -84,6 +84,17 @@ demand_agg
 ```
 
 ```{r}
+# new agg demand attempt
+
+evs_agg_demand <- data
+
+evs_agg_demand$q_dac_fitted <- fitted(demand_dac)
+evs_agg_demand$q_nondac_fitted <- fitted(demand_nondac)
+
+
+```
+
+```{r}
 
 agg_fn <- function(Q){
   P = (-2.043 * Q) + 150021
@@ -180,6 +191,6 @@ cs_nondac_no_int
 cs_dac_no_int + cs_nondac_no_int
 ```
 
-### 5. 
+### 5.
 
 Optimal tax is equal to the MEC(Q\*), and since MEC = 18900 as a constant, the optimal tax will be \$18900 per EV.
