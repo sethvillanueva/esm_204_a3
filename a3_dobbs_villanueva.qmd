@@ -114,7 +114,7 @@ nondac_demand_fn_q_from_p <- function(P){
 
 ev_agg_demand <- data.frame(price_dollars = seq(from = 0, to = 165000, by = 1000))
 
-ev_agg_demand <- evs_agg_demand %>% 
+ev_agg_demand <- ev_agg_demand %>% 
   mutate(q_dac_fitted = ifelse(dac_demand_fn_q_from_p(price_dollars)>0, dac_demand_fn_q_from_p(price_dollars), 0)) %>% 
   mutate(q_nondac_fitted = ifelse(nondac_demand_fn_q_from_p(price_dollars)>0, nondac_demand_fn_q_from_p(price_dollars), 0)) %>% 
   mutate(q_agg = q_dac_fitted + q_nondac_fitted)
@@ -180,17 +180,15 @@ agg_demand_plot
 
 ### 4.
 
+dac_demand_fn_q\_from_p \<- function(P){
+
+Q = ((1/demand_dac\$coefficients\[2\]) \* P) + (demand_dac\$coefficients\[1\]/(-demand_dac\$coefficients\[2\]))
+
+return(Q)
+
+}
+
 ```{r}
-
-dac_demand_fn <- function(Q){
-  P = (demand_dac$coefficients[2] * Q) + demand_dac$coefficients[1]
-  return(P)
-}
-
-dac_demand_fn_q_from_p <- function(P){
-  Q = ((1/demand_dac$coefficients[2]) * P) + (demand_dac$coefficients[1]/(-demand_dac$coefficients[2]))
-  return(Q)
-}
 
 dac_q_star_no_int <- dac_demand_fn_q_from_p(50000)
 dac_q_star_no_int
@@ -202,15 +200,6 @@ cs_dac_no_int
 ```
 
 ```{r}
-nondac_demand_fn <- function(Q){
-  P = (demand_nondac$coefficients[2] * Q) + demand_nondac$coefficients[1]
-  return(P)
-}
-
-nondac_demand_fn_q_from_p <- function(P){
-  Q = ((1/demand_nondac$coefficients[2]) * P) + (demand_nondac$coefficients[1]/(-demand_nondac$coefficients[2]))
-  return(Q)
-}
 
 nondac_q_star_no_int <- nondac_demand_fn_q_from_p(50000)
 nondac_q_star_no_int
