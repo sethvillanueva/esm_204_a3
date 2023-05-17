@@ -85,7 +85,7 @@ demand_agg
 
 ```{r}
 
-demand_dac_fn <- function(Q){
+dac_demand_fn <- function(Q){
   P = (demand_dac$coefficients[2] * Q) + demand_dac$coefficients[1]
   return(P)
 }
@@ -125,6 +125,42 @@ ggplot(data = ev_agg_demand, aes(x = q_agg, y = price_dollars))  +
   theme_bw()
 
 
+```
+
+#### Making an aggregate demand function
+
+We will make an aggregate demand function with two different line equations that are evaluated depending on whether Q is before or beyond the kink in the aggregate demand curve. The first line equation from (0, Q_kink) is simply D_nondac, though we must solve for the equation from Q_kink onward. We can do this with algebra, which involves first finding the Q of D_nondac at the equilibrium price, which gives us Q_kink. We then can solve for the horizontal sum below the y-intercept of D_dac, i.e. changing the y-intercept of D_nondac to equal the y-intercept of D_dac and horizontally summing (call this P'agg). From here, we can shift this curve by Q_kink, by taking P'agg(Q-Q_kink) to get the portion of the aggregate demand curve we will evaluate beyond Q_kink.
+
+```{r}
+
+q_kink = nondac_demand_fn_q_from_p(50000)
+
+d_agg_beyond_kink_fn <- function(Q){
+  price = (demand_dac$coefficients[1] - (q_kink / (demand_dac$coefficients[2] + demand_nondac$coefficients[2]))) +
+             (1/(demand_dac$coefficients[2] + demand_nondac$coefficients[2])) * Q
+}
+
+
+agg_demand_fn <- function(Q){
+  if (Q < q_kink) {
+    price = nondac_demand_fn(Q)
+  }
+  if (Q>= q_kink) {
+    price = d_agg_beyond_kink_fn(Q)
+  }
+  return(price)
+}
+
+q_kink
+
+agg_demand_fn(10000)
+nondac_demand_fn(10000)
+
+agg_demand_fn(60000)
+```
+
+```{r}
+demand_dac$coefficients[1] - (q_kink / (demand_dac$coefficients[2] + demand_nondac$coefficients[2]))
 ```
 
 ```{r}
