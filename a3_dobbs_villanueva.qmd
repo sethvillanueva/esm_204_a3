@@ -18,6 +18,7 @@ jupyter: python3
 
 library(tidyverse)
 library(here)
+library(pracma)
 
 ```
 
@@ -29,11 +30,12 @@ ev_dac_data <- read_csv(here('data', 'HW3_data.csv')) %>% janitor::clean_names()
 
 ```{r}
 
-demand_dac <- lm(price_dollars ~ q_dac, data = ev_dac_data)
-demand_nondac <- lm(price_dollars ~ q_non_dac, data = ev_dac_data)
+demand_dac <- lm(price_dollars ~ q_dac, data = ev_dac_data) %>% summary()
+demand_nondac <- lm(price_dollars ~ q_non_dac, data = ev_dac_data) %>% summary()
 
 demand_dac
 demand_nondac
+
 ```
 
 $$\begin{aligned}
@@ -46,16 +48,6 @@ $$\begin{aligned}
 These differences in demand could be a result of a willingness to pay to avoid transportation pollution by
 
 -   nonDACs have higher marginal benefit across all quantities than DACs (higher intercept and shallower slope)
-
-```{r}
-ggplot(data = ev_dac_data, aes(x = q_dac, y = price_dollars))  +
-  geom_point() + 
-  stat_smooth(aes(x = q_dac, y = price_dollars), method = 'lm', col = 'red')
-
-ggplot(data = ev_dac_data, aes(x = q_non_dac, y = price_dollars))  +
-  geom_point() + 
-  stat_smooth(aes(x = q_non_dac, y = price_dollars), method = 'lm', col = 'blue')
-```
 
 ### 2.
 
@@ -75,37 +67,26 @@ $$\begin{aligned}
 
 ```{r}
 
-evs_agg_demand <- ev_dac_data %>% 
-  mutate(q_agg = q_dac + q_non_dac)
-
-demand_agg <- lm(price_dollars ~ q_agg, data = evs_agg_demand)
-demand_agg
-
-```
-
-```{r}
-
 dac_demand_fn <- function(Q){
-  P = (demand_dac$coefficients[2] * Q) + demand_dac$coefficients[1]
+  P = (demand_dac$coefficients[2,1] * Q) + demand_dac$coefficients[1,1]
   return(P)
 }
 
 dac_demand_fn_q_from_p <- function(P){
-  Q = ((1/demand_dac$coefficients[2]) * P) + (demand_dac$coefficients[1]/(-demand_dac$coefficients[2]))
+  Q = ((1/demand_dac$coefficients[2,1]) * P) + (ddemand_dac$coefficients[1,1]]/(-demand_dac$coefficients[2,1]))
   return(Q)
 }
 
 
 nondac_demand_fn <- function(Q){
-  P = (demand_nondac$coefficients[2] * Q) + demand_nondac$coefficients[1]
+  P = (demand_nondac$coefficients[2,1] * Q) + demand_nondac$coefficients[1,1]
   return(P)
 }
 
 nondac_demand_fn_q_from_p <- function(P){
-  Q = ((1/demand_nondac$coefficients[2]) * P) + (demand_nondac$coefficients[1]/(-demand_nondac$coefficients[2]))
+  Q = ((1/demand_nondac$coefficients[2,1]) * P) + (demand_nondac$coefficients[1,1]/(-demand_nondac$coefficients[2,1]))
   return(Q)
 }
-
 
 ```
 
@@ -115,10 +96,19 @@ nondac_demand_fn_q_from_p <- function(P){
 ev_agg_demand <- data.frame(price_dollars = seq(from = 0, to = 165000, by = 1000))
 
 ev_agg_demand <- ev_agg_demand %>% 
-  mutate(q_dac_fitted = ifelse(dac_demand_fn_q_from_p(price_dollars)>0, dac_demand_fn_q_from_p(price_dollars), 0)) %>% 
-  mutate(q_nondac_fitted = ifelse(nondac_demand_fn_q_from_p(price_dollars)>0, nondac_demand_fn_q_from_p(price_dollars), 0)) %>% 
-  mutate(q_agg = q_dac_fitted + q_nondac_fitted)
+  mutate(q_dac_fitted = ifelse(dac_demand_fn_q_from_p(price_dollars)>0, dac_demand_fn_q_from_p(price_dollars), 0)) %>%    # fit dac regression results, but only for values greater than 0
+  mutate(q_nondac_fitted = ifelse(nondac_demand_fn_q_from_p(price_dollars)>0, nondac_demand_fn_q_from_p(price_dollars), 0)) %>%     # fit nondac regression results, but only for values greater than 0
+  mutate(q_agg = q_dac_fitted + q_nondac_fitted) %>%                  # calc aggregate demand values
+  subset(q_agg > 0)             # filter out 0 values
 
+
+ggplot(data = ev_agg_demand, aes(x = q_dac_fitted, y = price_dollars))  +
+  geom_line() + 
+  theme_bw()
+
+ggplot(data = ev_agg_demand, aes(x = q_nondac_fitted, y = price_dollars))  +
+  geom_line() + 
+  theme_bw()
 
 ggplot(data = ev_agg_demand, aes(x = q_agg, y = price_dollars))  +
   geom_line() + 
@@ -133,11 +123,14 @@ We will make an aggregate demand function with two different line equations that
 
 ```{r}
 
-q_kink = nondac_demand_fn_q_from_p(50000)
+q_kink = nondac_demand_fn_q_from_p(demand_dac$coefficients[1,1])
+
+slope_agg = (demand_dac$coefficients[2,1]*demand_nondac$coefficients[2,1])/(demand_dac$coefficients[2,1] + demand_nondac$coefficients[2,1])
 
 d_agg_beyond_kink_fn <- function(Q){
-  price = (demand_dac$coefficients[1] - (q_kink / (demand_dac$coefficients[2] + demand_nondac$coefficients[2]))) +
-             (1/(demand_dac$coefficients[2] + demand_nondac$coefficients[2])) * Q
+  price = (demand_dac$coefficients[1,1] - (slope_agg * q_kink)) +
+             (slope_agg * Q)
+  return(price)
 }
 
 
@@ -145,37 +138,22 @@ agg_demand_fn <- function(Q){
   if (Q < q_kink) {
     price = nondac_demand_fn(Q)
   }
-  if (Q>= q_kink) {
+  if (Q >= q_kink) {
     price = d_agg_beyond_kink_fn(Q)
   }
   return(price)
 }
 
-q_kink
-
-agg_demand_fn(10000)
-nondac_demand_fn(10000)
-
-agg_demand_fn(60000)
-```
-
-```{r}
-demand_dac$coefficients[1] - (q_kink / (demand_dac$coefficients[2] + demand_nondac$coefficients[2]))
 ```
 
 ```{r}
 
-agg_fn <- function(Q){
-  P = (-2.043 * Q) + 150021
-  return(P)
+demand_less_price_no_int_fn <- function(Q){
+  Z = agg_demand_fn(Q) - 50000
+  return(Z)
 }
 
-agg_fn_q_from_p <- function(P){
-  Q = ((-1/2.043) * P) + (150021/2.043)
-  return(Q)
-}
-
-q_star_no_int <- agg_fn_q_from_p(50000)
+q_star_no_int = fzero(fun = function(x) demand_less_price_no_int_fn(x), c(0,100000))$x
 q_star_no_int
 ```
 
@@ -187,9 +165,11 @@ supply_fn <- function(Q){
 
 ```
 
+For consumer surplus, we take the sum of the integral from \[0, Q_kink\] and the integral \[Q_kink, Q\*\], minus P\*xQ\*.
+
 ```{r}
 
-cs = pracma::integral(fun = function(x) agg_fn(x), xmin = 0, xmax = q_star_no_int) - (q_star_no_int*50000)
+cs = pracma::integral(fun = function(x) nondac_demand_fn(x), xmin = 0, xmax = q_kink) + pracma::integral(fun = function(x) d_agg_beyond_kink_fn(x), xmin = q_kink, xmax = q_star_no_int) - (q_star_no_int*50000)
 cs
 
 ps = (q_star_no_int*50000) / 2
@@ -206,7 +186,7 @@ env_cost_q_star_no_int
 
 ```{r}
 
-agg_demand_plot <- ggplot(data = evs_agg_demand, aes(x = q_agg, y = price_dollars)) +
+agg_demand_plot <- ggplot(data = ev_agg_demand, aes(x = q_agg, y = price_dollars)) +
   geom_point() +
   theme_bw()
 
@@ -215,14 +195,6 @@ agg_demand_plot
 ```
 
 ### 4.
-
-dac_demand_fn_q\_from_p \<- function(P){
-
-Q = ((1/demand_dac\$coefficients\[2\]) \* P) + (demand_dac\$coefficients\[1\]/(-demand_dac\$coefficients\[2\]))
-
-return(Q)
-
-}
 
 ```{r}
 
@@ -263,3 +235,124 @@ cs_nondac_percent
 ### 5.
 
 Optimal tax is equal to the MEC(Q\*), and since MEC = 18900 as a constant, the optimal tax will be \$18900 per EV.
+
+#### (a)
+
+```{r}
+
+supply_tax_fn <- function(Q){
+  P = supply_fn(Q) + mec_per_ev
+  return(P)
+}
+
+
+demand_less_price_tax_fn <- function(Q){
+  Z = agg_demand_fn(Q) - supply_tax_fn(Q)
+  return(Z)
+}
+
+q_star_tax = fzero(fun = function(x) demand_less_price_tax_fn(x), c(0,100000))$x
+q_star_tax
+
+```
+
+#### (b)
+
+```{r}
+
+p_star_tax = agg_demand_fn(q_star_tax)
+p_star_tax
+
+```
+
+```{r}
+
+ev_agg_demand_tax <- ev_agg_demand %>% 
+  mutate(q_msc_supply = ((q_star_tax/(p_star_tax - mec_per_ev))*price_dollars) - mec_per_ev)
+
+
+```
+
+#### (c)
+
+```{r}
+
+q_nondac_demand_tax = nondac_demand_fn_q_from_p(p_star_tax)
+q_nondac_demand_tax
+
+nondac_cs_tax = pracma::integral(fun = function(x) nondac_demand_fn(x), xmin = 0, xmax = q_nondac_demand_tax) - (q_nondac_demand_tax*p_star_tax)
+nondac_cs_tax
+
+```
+
+#### (d)
+
+```{r}
+
+q_dac_demand_tax = dac_demand_fn_q_from_p(p_star_tax)
+q_dac_demand_tax
+
+dac_cs_tax = pracma::integral(fun = function(x) dac_demand_fn(x), xmin = 0, xmax = q_dac_demand_tax) - (q_dac_demand_tax*p_star_tax + mec_per_ev*q_star_tax)
+dac_cs_tax
+
+```
+
+#### (e)
+
+```{r}
+
+ps_tax = (q_star_tax*(p_star_tax - mec_per_ev)) / 2
+ps_tax
+
+```
+
+```{r}
+
+ggplot()  +
+  geom_line(data = ev_agg_demand, aes(x = q_dac_fitted, y = price_dollars)) + 
+  geom_line(data = ev_agg_demand, aes(x = q_nondac_fitted, y = price_dollars))  +
+  geom_line(data = ev_agg_demand, aes(x = q_agg, y = price_dollars))  +
+  geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = price_dollars))  +
+  geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = mec_per_ev))  +
+  geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = p_star_tax))  +
+  xlim(0, 80000) +
+  theme_bw()
+
+```
+
+#### (f)
+
+```{r}
+
+env_damage_tax = mec_per_ev * q_star_tax
+env_damage_tax
+```
+
+#### (g)
+
+```{r}
+
+tax_revenue_tax = mec_per_ev * q_star_tax
+tax_revenue_tax
+```
+
+### 6.
+
+#### 
+
+```{r}
+
+dac_revenue_share_percent = dac_q_star_no_int / q_star_no_int
+nondac_revenue_share_percent = nondac_q_star_no_int / q_star_no_int
+
+dac_revenue_share_percent
+nondac_revenue_share_percent
+
+dac_revenue_share = tax_revenue_tax * dac_revenue_share_percent
+nondac_revenue_share = tax_revenue_tax * nondac_revenue_share_percent
+
+dac_revenue_share
+nondac_revenue_share
+```
+
+#### (a)
