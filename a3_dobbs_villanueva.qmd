@@ -1,5 +1,6 @@
 ---
 title: "a3_dobbs_villanueva"
+author: 'Kaytee Dobbs and Seth Villanueva'
 format: 
   html:
     code-fold: true
@@ -19,10 +20,11 @@ jupyter: python3
 library(tidyverse)
 library(here)
 library(pracma)
+library(knitr)
 
 ```
 
-```{r}
+```{r, message=FALSE}
 ev_dac_data <- read_csv(here('data', 'HW3_data.csv')) %>% janitor::clean_names()
 ```
 
@@ -45,9 +47,11 @@ $$\begin{aligned}
 \\
 \end{aligned}$$
 
-These differences in demand could be a result of a willingness to pay to avoid transportation pollution by
+These DAC community's willingness to pay for EVs decreases much more rapidly than the non-DAC community. This is likely because the DAC community has collectively lower income and cannot afford to purchase very many EVs.
 
--   nonDACs have higher marginal benefit across all quantities than DACs (higher intercept and shallower slope)
+differences in demand could be a result of a willingness to pay to avoid transportation pollution by
+
+-   NonDACs have higher marginal benefit across all quantities than DACs (higher intercept and shallower slope)
 
 ### 2.
 
@@ -73,7 +77,7 @@ dac_demand_fn <- function(Q){
 }
 
 dac_demand_fn_q_from_p <- function(P){
-  Q = ((1/demand_dac$coefficients[2,1]) * P) + (ddemand_dac$coefficients[1,1]]/(-demand_dac$coefficients[2,1]))
+  Q = ((1/demand_dac$coefficients[2,1]) * P) + (demand_dac$coefficients[1,1]/(-demand_dac$coefficients[2,1]))
   return(Q)
 }
 
@@ -338,21 +342,111 @@ tax_revenue_tax
 
 ### 6.
 
-#### 
+#### (a), (b), (c)
 
 ```{r}
 
-dac_revenue_share_percent = dac_q_star_no_int / q_star_no_int
-nondac_revenue_share_percent = nondac_q_star_no_int / q_star_no_int
+supply_variable_fn <- function(Q, tax){
+  P = supply_fn(Q) + tax
+  return(P)
+}
 
-dac_revenue_share_percent
-nondac_revenue_share_percent
+demand_less_price_tax_fn <- function(Q){
+  Z = agg_demand_fn(Q) - supply_tax_fn(Q)
+  return(Z)
+}
 
-dac_revenue_share = tax_revenue_tax * dac_revenue_share_percent
-nondac_revenue_share = tax_revenue_tax * nondac_revenue_share_percent
 
-dac_revenue_share
-nondac_revenue_share
+dac_pretax_q_percent = dac_q_star_no_int / q_star_no_int
+nondac_pretax_q_percent = nondac_q_star_no_int / q_star_no_int
+
+
+
+welfare_stats <- function(battery_damage) {
+  
+  opt_tax = battery_damage * 63
+  
+  welfare_df <- data.frame()
+  
+  # supply function
+  supply_variable_fn <- function(Q){
+    P = supply_fn(Q) + opt_tax
+    return(P)
+  }
+  
+  # net demand function
+  demand_less_price_variable_fn <- function(Q){
+    Z = agg_demand_fn(Q) - supply_variable_fn(Q)
+    return(Z)
+  }
+  
+  # equilibrium p and q
+  q_star_variable = fzero(fun = function(x) demand_less_price_variable_fn(x), c(0,100000))$x
+  p_star_variable = agg_demand_fn(q_star_variable)
+
+  # q demanded by group
+  q_nondac_demand_variable = nondac_demand_fn_q_from_p(p_star_variable)
+  q_dac_demand_variable = dac_demand_fn_q_from_p(p_star_variable)
+  
+  # consumer surplus
+  nondac_cs_variable = pracma::integral(fun = function(x) nondac_demand_fn(x), xmin = 0, xmax = q_nondac_demand_variable) - (q_nondac_demand_variable*p_star_variable)
+  dac_cs_variable = pracma::integral(fun = function(x) dac_demand_fn(x), xmin = 0, xmax = q_dac_demand_variable) - (q_dac_demand_variable*p_star_variable + opt_tax*q_star_variable)
+  
+  # producer surplus
+  ps_variable = (q_star_variable*(p_star_variable - opt_tax)) / 2
+  
+  
+  ### add the revenue redistribution to each group
+  tax_revenue_variable = opt_tax * q_star_variable
+
+  dac_cs_variable = dac_cs_variable + (dac_pretax_q_percent * tax_revenue_variable)
+  nondac_cs_variable = nondac_cs_variable + (nondac_pretax_q_percent * tax_revenue_variable)
+  
+  
+  ### produce output dataframe
+  welfare_df <- rbind(welfare_df, data.frame(damage_level = battery_damage,
+                                             q_eq = q_star_variable,
+                                             p_eq = p_star_variable,
+                                             nondac_cs = nondac_cs_variable,
+                                             dac_cs = dac_cs_variable,
+                                             ps = ps_variable))
+  
+  return(welfare_df)
+  
+}
+
 ```
 
-#### (a)
+```{r}
+
+damages_list <- c(350, 400, 450, 500)
+
+ev_welfare <- data.frame()
+for (d in damages_list) {
+  
+  ev_welfare <- rbind(ev_welfare, welfare_stats(d))
+  
+}
+
+ev_welfare <- ev_welfare %>% 
+  select(-c(q_eq, p_eq))
+
+kable(ev_welfare,
+      col.names = c('Battery Damage per EV',  'Non-DAC CS', 'DAC CS', 'PS'))
+```
+
+Within the table above, we see the welfare of DAC and non-DAC consumers as well as producers at the varying levels of environmental damage per kg of lithium in an EV battery. DAC welfare is negative, and all of non-DAC, DAC, and producer welfare decreases as the damage level increases despite redistribution of tax revenue to consumers.
+
+### 7.
+
+#### (a) 
+
+Because gasoline cars contribute to climate change damages, and EV cars are meant to replace gasoline cars, the optimal EV tax would decrease if it considers the positive externality that results from each new EV car on the road. 
+
+#### (b)
+
+The non-DAC community would be in favor of this new tax over to the tax that only accounts for mining. The damages from climate change via gasoline cars doesn\'t impact them, and they also do not feel the environmental damages from mining, so even though a lower tax would increase the equillibrium quantity of EVs which is associated with more environmental damage, this doesn\'t impact them so they pay less in taxes and enjoy the benefits.
+
+#### (c)
+
+The DAC consumers would be less likely to support the new lower tax, because it would result in less tax revenue overall to mitigate the environmental damages that fall the heaviest on them. They do not experience much of the benefits to climate change from the EV cars swapped for gasoline cars. The increased quantity would cause environmental damages that fall on the DAC community that are higher than any increase in consumer benefit. 
