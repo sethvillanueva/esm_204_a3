@@ -30,7 +30,7 @@ ev_dac_data <- read_csv(here('data', 'HW3_data.csv')) %>% janitor::clean_names()
 
 ### 1.
 
-```{r}
+```{r, results=FALSE}
 
 demand_dac <- lm(price_dollars ~ q_dac, data = ev_dac_data) %>% summary()
 demand_nondac <- lm(price_dollars ~ q_non_dac, data = ev_dac_data) %>% summary()
@@ -42,16 +42,14 @@ demand_nondac
 
 $$\begin{aligned}
 \\
-&D_{DAC} = -6.611*Q_{EVs} + 116855 \\
-&D_{nonDAC} = -2.731*Q_{EVs} + 158034 \\
+D_{DAC} &: P_{EV} = -6.611*Q_{EV} + 116855 \\
+D_{nonDAC} &: P_{EV} = -2.731*Q_{EV} + 158034 \\
 \\
 \end{aligned}$$
 
-These DAC community's willingness to pay for EVs decreases much more rapidly than the non-DAC community. This is likely because the DAC community has collectively lower income and cannot afford to purchase very many EVs.
+DAC communities have an overall lower level of demand compared to non-DAC communities, likely reflecting the large disparity in wealth between the two groups that limits the ability of DAC communities to afford many EVs without some form of financial assistance.
 
-differences in demand could be a result of a willingness to pay to avoid transportation pollution by
-
--   NonDACs have higher marginal benefit across all quantities than DACs (higher intercept and shallower slope)
+The DAC community's willingness to pay for EVs decreases much more rapidly than the non-DAC community. This is likely because the DAC community has collectively lower income and cannot afford to purchase very many EVs. There could be many underlying mechanisms at work that influence the income disparity we see between the groups, including but not limited to, systemic racism, lack of political power or civic engagement, being taken advantage of by private and public sector entities, legacies of white supremacy, generational trauma, and more.
 
 ### 2.
 
@@ -105,20 +103,6 @@ ev_agg_demand <- ev_agg_demand %>%
   mutate(q_agg = q_dac_fitted + q_nondac_fitted) %>%                  # calc aggregate demand values
   subset(q_agg > 0)             # filter out 0 values
 
-
-ggplot(data = ev_agg_demand, aes(x = q_dac_fitted, y = price_dollars))  +
-  geom_line() + 
-  theme_bw()
-
-ggplot(data = ev_agg_demand, aes(x = q_nondac_fitted, y = price_dollars))  +
-  geom_line() + 
-  theme_bw()
-
-ggplot(data = ev_agg_demand, aes(x = q_agg, y = price_dollars))  +
-  geom_line() + 
-  theme_bw()
-
-
 ```
 
 #### Making an aggregate demand function
@@ -150,6 +134,16 @@ agg_demand_fn <- function(Q){
 
 ```
 
+The aggregate demand curve for EVs is the following:
+
+```{r}
+
+ggplot(data = ev_agg_demand, aes(x = q_agg, y = price_dollars))  +
+  geom_line() + 
+  theme_bw()
+
+```
+
 ```{r}
 
 demand_less_price_no_int_fn <- function(Q){
@@ -161,25 +155,46 @@ q_star_no_int = fzero(fun = function(x) demand_less_price_no_int_fn(x), c(0,1000
 q_star_no_int
 ```
 
+The supply curve for EVs is the following:
+
 ```{r}
 
 supply_fn <- function(Q){
   P = (50000/q_star_no_int) * Q
 }
 
+
+x<-1:80000
+y<-supply_fn(x)
+df<-data.frame(x,y)
+
+ggplot(df, aes(x,y))+
+  geom_line(aes(supply_fn(x)))+
+  labs(x="Q (EVs)", y="P (Dollars)")+
+  theme_bw()
+
+
 ```
 
-For consumer surplus, we take the sum of the integral from \[0, Q_kink\] and the integral \[Q_kink, Q\*\], minus P\*xQ\*.
+For consumer surplus (aka the overall welfare of consumers), we take the sum of the integral from \[0, Q_kink\] and the integral \[Q_kink, Q\*\], minus P\*xQ\*.
 
 ```{r}
 
 cs = pracma::integral(fun = function(x) nondac_demand_fn(x), xmin = 0, xmax = q_kink) + pracma::integral(fun = function(x) d_agg_beyond_kink_fn(x), xmin = q_kink, xmax = q_star_no_int) - (q_star_no_int*50000)
 cs
 
-ps = (q_star_no_int*50000) / 2
-ps
+
 
 ```
+
+To find producer surplus, we multiply Q\* x P\* and divide by 2.
+
+```{r}
+ps = (q_star_no_int*50000) / 2
+ps
+```
+
+The environmental cost under the status quo is found by multiplying the MEC x Q\*.
 
 ```{r}
 
@@ -188,22 +203,16 @@ env_cost_q_star_no_int
 
 ```
 
-```{r}
-
-agg_demand_plot <- ggplot(data = ev_agg_demand, aes(x = q_agg, y = price_dollars)) +
-  geom_point() +
-  theme_bw()
-
-
-agg_demand_plot
-```
-
 ### 4.
+
+To find how the current consumer benefit is divided between groups, we found the consumer surplus for both groups, added them to find the total, and then divided each group's CS by the total to find the percent for each group. This also served as a check for the overall welfare found in question 3.
+
+DAC consumer surplus:
 
 ```{r}
 
 dac_q_star_no_int <- dac_demand_fn_q_from_p(50000)
-dac_q_star_no_int
+#dac_q_star_no_int
 
 
 cs_dac_no_int = pracma::integral(fun = function(x) dac_demand_fn(x), xmin = 0, xmax = dac_q_star_no_int) - (dac_q_star_no_int*50000)
@@ -211,21 +220,27 @@ cs_dac_no_int
 
 ```
 
+non-DAC consumer surplus:
+
 ```{r}
 
 nondac_q_star_no_int <- nondac_demand_fn_q_from_p(50000)
-nondac_q_star_no_int
+#nondac_q_star_no_int
 
 
 cs_nondac_no_int = pracma::integral(fun = function(x) nondac_demand_fn(x), xmin = 0, xmax = nondac_q_star_no_int) - (nondac_q_star_no_int*50000)
 cs_nondac_no_int
 ```
 
+Total consumer surplus:
+
 ```{r}
 cs_dac_both <- cs_dac_no_int + cs_nondac_no_int
 
 cs_dac_both
 ```
+
+Shares of consumer surplus:
 
 ```{r}
 cs_dac_percent = cs_dac_no_int/cs_dac_both
@@ -235,6 +250,8 @@ cs_nondac_percent = cs_nondac_no_int/cs_dac_both
 cs_nondac_percent
 
 ```
+
+The DAC group has \~14% of consumer surplus, while the non-DAC group has \~86%.
 
 ### 5.
 
@@ -258,7 +275,11 @@ demand_less_price_tax_fn <- function(Q){
 q_star_tax = fzero(fun = function(x) demand_less_price_tax_fn(x), c(0,100000))$x
 q_star_tax
 
+# q_star_no_int - q_star_tax
+
 ```
+
+The quantity of EV's produced / consumed is decreased by the tax by 6,430 EVs, for a new Q\* of 43,241 EVs.
 
 #### (b)
 
@@ -267,7 +288,11 @@ q_star_tax
 p_star_tax = agg_demand_fn(q_star_tax)
 p_star_tax
 
+# p_star_tax - 50000
+
 ```
+
+The tax causes an increase in price of EVs by \$12,427.26, with a new P\* of \$62,427.26.
 
 ```{r}
 
@@ -282,24 +307,28 @@ ev_agg_demand_tax <- ev_agg_demand %>%
 ```{r}
 
 q_nondac_demand_tax = nondac_demand_fn_q_from_p(p_star_tax)
-q_nondac_demand_tax
+# q_nondac_demand_tax
 
 nondac_cs_tax = pracma::integral(fun = function(x) nondac_demand_fn(x), xmin = 0, xmax = q_nondac_demand_tax) - (q_nondac_demand_tax*p_star_tax)
 nondac_cs_tax
 
 ```
 
+The overall welfare of non-DAC consumers is \$1,673,553,441.
+
 #### (d)
 
 ```{r}
 
 q_dac_demand_tax = dac_demand_fn_q_from_p(p_star_tax)
-q_dac_demand_tax
+#q_dac_demand_tax
 
 dac_cs_tax = pracma::integral(fun = function(x) dac_demand_fn(x), xmin = 0, xmax = q_dac_demand_tax) - (q_dac_demand_tax*p_star_tax + mec_per_ev*q_star_tax)
 dac_cs_tax
 
 ```
+
+The overall welfare of DAC consumers is -\$593,228,313.
 
 #### (e)
 
@@ -308,19 +337,27 @@ dac_cs_tax
 ps_tax = (q_star_tax*(p_star_tax - mec_per_ev)) / 2
 ps_tax
 
+# ps_tax - ps
+
 ```
+
+The tax decreased producer surplus by \$300,700,669 for a new value of \$941,088,549.
 
 ```{r}
 
-ggplot()  +
-  geom_line(data = ev_agg_demand, aes(x = q_dac_fitted, y = price_dollars)) + 
-  geom_line(data = ev_agg_demand, aes(x = q_nondac_fitted, y = price_dollars))  +
-  geom_line(data = ev_agg_demand, aes(x = q_agg, y = price_dollars))  +
-  geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = price_dollars))  +
-  geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = mec_per_ev))  +
-  geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = p_star_tax))  +
-  xlim(0, 80000) +
-  theme_bw()
+#Plot that shows aggregate demand, demand for both groups of consumers, MSC curve, MEC curve, and P*. This was used for our own visualization and understanding.
+
+
+
+# ggplot()  +
+#   geom_line(data = ev_agg_demand, aes(x = q_dac_fitted, y = price_dollars)) + 
+#   geom_line(data = ev_agg_demand, aes(x = q_nondac_fitted, y = price_dollars))  +
+#   geom_line(data = ev_agg_demand, aes(x = q_agg, y = price_dollars))  +
+#   geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = price_dollars))  +
+#   geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = mec_per_ev))  +
+#   geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = p_star_tax))  +
+#   xlim(0, 80000) +
+#   theme_bw()
 
 ```
 
@@ -330,7 +367,12 @@ ggplot()  +
 
 env_damage_tax = mec_per_ev * q_star_tax
 env_damage_tax
+
+#env_damage_tax - env_cost_q_star_no_int
+
 ```
+
+The total environmental damage decreased by \$121,531,258 for a new value of \$817,261,391.
 
 #### (g)
 
@@ -339,6 +381,8 @@ env_damage_tax
 tax_revenue_tax = mec_per_ev * q_star_tax
 tax_revenue_tax
 ```
+
+The tax generated a revenue of \$817,261,391.
 
 ### 6.
 

@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.319">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kaytee Dobbs and Seth Villanueva">
+
+<title>a3_dobbs_villanueva</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="a3_dobbs_villanueva_final_files/libs/clipboard/clipboard.min.js"></script>
+<script src="a3_dobbs_villanueva_final_files/libs/quarto-html/quarto.js"></script>
+<script src="a3_dobbs_villanueva_final_files/libs/quarto-html/popper.min.js"></script>
+<script src="a3_dobbs_villanueva_final_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="a3_dobbs_villanueva_final_files/libs/quarto-html/anchor.min.js"></script>
+<link href="a3_dobbs_villanueva_final_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="a3_dobbs_villanueva_final_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="a3_dobbs_villanueva_final_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="a3_dobbs_villanueva_final_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="a3_dobbs_villanueva_final_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#assignment-3" id="toc-assignment-3" class="nav-link active" data-scroll-target="#assignment-3">Assignment 3</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">1.</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2.</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">3.</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">4.</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">5.</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">6.</a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">7.</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">a3_dobbs_villanueva</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kaytee Dobbs and Seth Villanueva </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="assignment-3" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-3">Assignment 3</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(pracma)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>ev_dac_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'HW3_data.csv'</span>)) <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section">1.</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>demand_dac <span class="ot">&lt;-</span> <span class="fu">lm</span>(price_dollars <span class="sc">~</span> q_dac, <span class="at">data =</span> ev_dac_data) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb3-2"><a href="#cb3-2"></a>demand_nondac <span class="ot">&lt;-</span> <span class="fu">lm</span>(price_dollars <span class="sc">~</span> q_non_dac, <span class="at">data =</span> ev_dac_data) <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>demand_dac</span>
+<span id="cb3-5"><a href="#cb3-5"></a>demand_nondac</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><span class="math display">\[\begin{aligned}
+\\
+D_{DAC} &amp;: P_{EV} = -6.611*Q_{EV} + 116855 \\
+D_{nonDAC} &amp;: P_{EV} = -2.731*Q_{EV} + 158034 \\
+\\
+\end{aligned}\]</span></p>
+<p>DAC communities have an overall lower level of demand compared to non-DAC communities, likely reflecting the large disparity in wealth between the two groups that limits the ability of DAC communities to afford many EVs without some form of financial assistance.</p>
+<p>The DAC community’s willingness to pay for EVs decreases much more rapidly than the non-DAC community. This is likely because the DAC community has collectively lower income and cannot afford to purchase very many EVs. There could be many underlying mechanisms at work that influence the income disparity we see between the groups, including but not limited to, systemic racism, lack of political power or civic engagement, being taken advantage of by private and public sector entities, legacies of white supremacy, generational trauma, and more.</p>
+</section>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1">2.</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>mec_per_ev <span class="ot">=</span> <span class="dv">300</span> <span class="sc">*</span> <span class="dv">63</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>mec_per_ev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18900</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\begin{aligned}
+\\
+&amp;MEC_{EV} = 18900 \\
+\\
+\end{aligned}\]</span></p>
+</section>
+<section id="section-2" class="level3">
+<h3 class="anchored" data-anchor-id="section-2">3.</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dac_demand_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  P <span class="ot">=</span> (demand_dac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">*</span> Q) <span class="sc">+</span> demand_dac<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">return</span>(P)</span>
+<span id="cb6-4"><a href="#cb6-4"></a>}</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>dac_demand_fn_q_from_p <span class="ot">&lt;-</span> <span class="cf">function</span>(P){</span>
+<span id="cb6-7"><a href="#cb6-7"></a>  Q <span class="ot">=</span> ((<span class="dv">1</span><span class="sc">/</span>demand_dac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]) <span class="sc">*</span> P) <span class="sc">+</span> (demand_dac<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span>(<span class="sc">-</span>demand_dac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]))</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">return</span>(Q)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>}</span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a>nondac_demand_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb6-13"><a href="#cb6-13"></a>  P <span class="ot">=</span> (demand_nondac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">*</span> Q) <span class="sc">+</span> demand_nondac<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="fu">return</span>(P)</span>
+<span id="cb6-15"><a href="#cb6-15"></a>}</span>
+<span id="cb6-16"><a href="#cb6-16"></a></span>
+<span id="cb6-17"><a href="#cb6-17"></a>nondac_demand_fn_q_from_p <span class="ot">&lt;-</span> <span class="cf">function</span>(P){</span>
+<span id="cb6-18"><a href="#cb6-18"></a>  Q <span class="ot">=</span> ((<span class="dv">1</span><span class="sc">/</span>demand_nondac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]) <span class="sc">*</span> P) <span class="sc">+</span> (demand_nondac<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span>(<span class="sc">-</span>demand_nondac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]))</span>
+<span id="cb6-19"><a href="#cb6-19"></a>  <span class="fu">return</span>(Q)</span>
+<span id="cb6-20"><a href="#cb6-20"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># new agg demand attempt</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>ev_agg_demand <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">price_dollars =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">165000</span>, <span class="at">by =</span> <span class="dv">1000</span>))</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>ev_agg_demand <span class="ot">&lt;-</span> ev_agg_demand <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">mutate</span>(<span class="at">q_dac_fitted =</span> <span class="fu">ifelse</span>(<span class="fu">dac_demand_fn_q_from_p</span>(price_dollars)<span class="sc">&gt;</span><span class="dv">0</span>, <span class="fu">dac_demand_fn_q_from_p</span>(price_dollars), <span class="dv">0</span>)) <span class="sc">%&gt;%</span>    <span class="co"># fit dac regression results, but only for values greater than 0</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">mutate</span>(<span class="at">q_nondac_fitted =</span> <span class="fu">ifelse</span>(<span class="fu">nondac_demand_fn_q_from_p</span>(price_dollars)<span class="sc">&gt;</span><span class="dv">0</span>, <span class="fu">nondac_demand_fn_q_from_p</span>(price_dollars), <span class="dv">0</span>)) <span class="sc">%&gt;%</span>     <span class="co"># fit nondac regression results, but only for values greater than 0</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">mutate</span>(<span class="at">q_agg =</span> q_dac_fitted <span class="sc">+</span> q_nondac_fitted) <span class="sc">%&gt;%</span>                  <span class="co"># calc aggregate demand values</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">subset</span>(q_agg <span class="sc">&gt;</span> <span class="dv">0</span>)             <span class="co"># filter out 0 values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="making-an-aggregate-demand-function" class="level4">
+<h4 class="anchored" data-anchor-id="making-an-aggregate-demand-function">Making an aggregate demand function</h4>
+<p>We will make an aggregate demand function with two different line equations that are evaluated depending on whether Q is before or beyond the kink in the aggregate demand curve. The first line equation from (0, Q_kink) is simply D_nondac, though we must solve for the equation from Q_kink onward. We can do this with algebra, which involves first finding the Q of D_nondac at the equilibrium price, which gives us Q_kink. We then can solve for the horizontal sum below the y-intercept of D_dac, i.e.&nbsp;changing the y-intercept of D_nondac to equal the y-intercept of D_dac and horizontally summing (call this P’agg). From here, we can shift this curve by Q_kink, by taking P’agg(Q-Q_kink) to get the portion of the aggregate demand curve we will evaluate beyond Q_kink.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>q_kink <span class="ot">=</span> <span class="fu">nondac_demand_fn_q_from_p</span>(demand_dac<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>])</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a>slope_agg <span class="ot">=</span> (demand_dac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]<span class="sc">*</span>demand_nondac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>])<span class="sc">/</span>(demand_dac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">+</span> demand_nondac<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>])</span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a>d_agg_beyond_kink_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb8-6"><a href="#cb8-6"></a>  price <span class="ot">=</span> (demand_dac<span class="sc">$</span>coefficients[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">-</span> (slope_agg <span class="sc">*</span> q_kink)) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>             (slope_agg <span class="sc">*</span> Q)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">return</span>(price)</span>
+<span id="cb8-9"><a href="#cb8-9"></a>}</span>
+<span id="cb8-10"><a href="#cb8-10"></a></span>
+<span id="cb8-11"><a href="#cb8-11"></a></span>
+<span id="cb8-12"><a href="#cb8-12"></a>agg_demand_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="cf">if</span> (Q <span class="sc">&lt;</span> q_kink) {</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    price <span class="ot">=</span> <span class="fu">nondac_demand_fn</span>(Q)</span>
+<span id="cb8-15"><a href="#cb8-15"></a>  }</span>
+<span id="cb8-16"><a href="#cb8-16"></a>  <span class="cf">if</span> (Q <span class="sc">&gt;=</span> q_kink) {</span>
+<span id="cb8-17"><a href="#cb8-17"></a>    price <span class="ot">=</span> <span class="fu">d_agg_beyond_kink_fn</span>(Q)</span>
+<span id="cb8-18"><a href="#cb8-18"></a>  }</span>
+<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">return</span>(price)</span>
+<span id="cb8-20"><a href="#cb8-20"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The aggregate demand curve for EVs is the following:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ev_agg_demand, <span class="fu">aes</span>(<span class="at">x =</span> q_agg, <span class="at">y =</span> price_dollars))  <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="a3_dobbs_villanueva_final_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>demand_less_price_no_int_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb10-2"><a href="#cb10-2"></a>  Z <span class="ot">=</span> <span class="fu">agg_demand_fn</span>(Q) <span class="sc">-</span> <span class="dv">50000</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">return</span>(Z)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>}</span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a>q_star_no_int <span class="ot">=</span> <span class="fu">fzero</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">demand_less_price_no_int_fn</span>(x), <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>))<span class="sc">$</span>x</span>
+<span id="cb10-7"><a href="#cb10-7"></a>q_star_no_int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 49671.57</code></pre>
+</div>
+</div>
+<p>The supply curve for EVs is the following:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>supply_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb12-2"><a href="#cb12-2"></a>  P <span class="ot">=</span> (<span class="dv">50000</span><span class="sc">/</span>q_star_no_int) <span class="sc">*</span> Q</span>
+<span id="cb12-3"><a href="#cb12-3"></a>}</span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>x<span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">80000</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>y<span class="ot">&lt;-</span><span class="fu">supply_fn</span>(x)</span>
+<span id="cb12-8"><a href="#cb12-8"></a>df<span class="ot">&lt;-</span><span class="fu">data.frame</span>(x,y)</span>
+<span id="cb12-9"><a href="#cb12-9"></a></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x,y))<span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="fu">supply_fn</span>(x)))<span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Q (EVs)"</span>, <span class="at">y=</span><span class="st">"P (Dollars)"</span>)<span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="a3_dobbs_villanueva_final_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>For consumer surplus (aka the overall welfare of consumers), we take the sum of the integral from [0, Q_kink] and the integral [Q_kink, Q*], minus P*xQ*.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>cs <span class="ot">=</span> pracma<span class="sc">::</span><span class="fu">integral</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">nondac_demand_fn</span>(x), <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> q_kink) <span class="sc">+</span> pracma<span class="sc">::</span><span class="fu">integral</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">d_agg_beyond_kink_fn</span>(x), <span class="at">xmin =</span> q_kink, <span class="at">xmax =</span> q_star_no_int) <span class="sc">-</span> (q_star_no_int<span class="sc">*</span><span class="dv">50000</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>cs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2474912870</code></pre>
+</div>
+</div>
+<p>To find producer surplus, we multiply Q* x P* and divide by 2.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>ps <span class="ot">=</span> (q_star_no_int<span class="sc">*</span><span class="dv">50000</span>) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>ps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1241789218</code></pre>
+</div>
+</div>
+<p>The environmental cost under the status quo is found by multiplying the MEC x Q*.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>env_cost_q_star_no_int <span class="ot">=</span> mec_per_ev <span class="sc">*</span> q_star_no_int</span>
+<span id="cb17-2"><a href="#cb17-2"></a>env_cost_q_star_no_int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 938792649</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="section-3" class="level3">
+<h3 class="anchored" data-anchor-id="section-3">4.</h3>
+<p>To find how the current consumer benefit is divided between groups, we found the consumer surplus for both groups, added them to find the total, and then divided each group’s CS by the total to find the percent for each group. This also served as a check for the overall welfare found in question 3.</p>
+<p>DAC consumer surplus:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>dac_q_star_no_int <span class="ot">&lt;-</span> <span class="fu">dac_demand_fn_q_from_p</span>(<span class="dv">50000</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="co">#dac_q_star_no_int</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a>cs_dac_no_int <span class="ot">=</span> pracma<span class="sc">::</span><span class="fu">integral</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dac_demand_fn</span>(x), <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> dac_q_star_no_int) <span class="sc">-</span> (dac_q_star_no_int<span class="sc">*</span><span class="dv">50000</span>)</span>
+<span id="cb19-6"><a href="#cb19-6"></a>cs_dac_no_int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 338017962</code></pre>
+</div>
+</div>
+<p>non-DAC consumer surplus:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>nondac_q_star_no_int <span class="ot">&lt;-</span> <span class="fu">nondac_demand_fn_q_from_p</span>(<span class="dv">50000</span>)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="co">#nondac_q_star_no_int</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a></span>
+<span id="cb21-5"><a href="#cb21-5"></a>cs_nondac_no_int <span class="ot">=</span> pracma<span class="sc">::</span><span class="fu">integral</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">nondac_demand_fn</span>(x), <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> nondac_q_star_no_int) <span class="sc">-</span> (nondac_q_star_no_int<span class="sc">*</span><span class="dv">50000</span>)</span>
+<span id="cb21-6"><a href="#cb21-6"></a>cs_nondac_no_int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2136894908</code></pre>
+</div>
+</div>
+<p>Total consumer surplus:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>cs_dac_both <span class="ot">&lt;-</span> cs_dac_no_int <span class="sc">+</span> cs_nondac_no_int</span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a>cs_dac_both</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2474912870</code></pre>
+</div>
+</div>
+<p>Shares of consumer surplus:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>cs_dac_percent <span class="ot">=</span> cs_dac_no_int<span class="sc">/</span>cs_dac_both</span>
+<span id="cb25-2"><a href="#cb25-2"></a>cs_dac_percent</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1365777</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>cs_nondac_percent <span class="ot">=</span> cs_nondac_no_int<span class="sc">/</span>cs_dac_both</span>
+<span id="cb27-2"><a href="#cb27-2"></a>cs_nondac_percent</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8634223</code></pre>
+</div>
+</div>
+<p>The DAC group has ~14% of consumer surplus, while the non-DAC group has ~86%.</p>
+</section>
+<section id="section-4" class="level3">
+<h3 class="anchored" data-anchor-id="section-4">5.</h3>
+<p>Optimal tax is equal to the MEC(Q*), and since MEC = 18900 as a constant, the optimal tax will be $18900 per EV.</p>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">(a)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>supply_tax_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb29-2"><a href="#cb29-2"></a>  P <span class="ot">=</span> <span class="fu">supply_fn</span>(Q) <span class="sc">+</span> mec_per_ev</span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">return</span>(P)</span>
+<span id="cb29-4"><a href="#cb29-4"></a>}</span>
+<span id="cb29-5"><a href="#cb29-5"></a></span>
+<span id="cb29-6"><a href="#cb29-6"></a></span>
+<span id="cb29-7"><a href="#cb29-7"></a>demand_less_price_tax_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb29-8"><a href="#cb29-8"></a>  Z <span class="ot">=</span> <span class="fu">agg_demand_fn</span>(Q) <span class="sc">-</span> <span class="fu">supply_tax_fn</span>(Q)</span>
+<span id="cb29-9"><a href="#cb29-9"></a>  <span class="fu">return</span>(Z)</span>
+<span id="cb29-10"><a href="#cb29-10"></a>}</span>
+<span id="cb29-11"><a href="#cb29-11"></a></span>
+<span id="cb29-12"><a href="#cb29-12"></a>q_star_tax <span class="ot">=</span> <span class="fu">fzero</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">demand_less_price_tax_fn</span>(x), <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>))<span class="sc">$</span>x</span>
+<span id="cb29-13"><a href="#cb29-13"></a>q_star_tax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 43241.34</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># q_star_no_int - q_star_tax</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The quantity of EV’s produced / consumed is decreased by the tax by 6,430 EVs, for a new Q* of 43,241 EVs.</p>
+</section>
+<section id="b" class="level4">
+<h4 class="anchored" data-anchor-id="b">(b)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>p_star_tax <span class="ot">=</span> <span class="fu">agg_demand_fn</span>(q_star_tax)</span>
+<span id="cb32-2"><a href="#cb32-2"></a>p_star_tax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 62427.26</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># p_star_tax - 50000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The tax causes an increase in price of EVs by $12,427.26, with a new P* of $62,427.26.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>ev_agg_demand_tax <span class="ot">&lt;-</span> ev_agg_demand <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">mutate</span>(<span class="at">q_msc_supply =</span> ((q_star_tax<span class="sc">/</span>(p_star_tax <span class="sc">-</span> mec_per_ev))<span class="sc">*</span>price_dollars) <span class="sc">-</span> mec_per_ev)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="c" class="level4">
+<h4 class="anchored" data-anchor-id="c">(c)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>q_nondac_demand_tax <span class="ot">=</span> <span class="fu">nondac_demand_fn_q_from_p</span>(p_star_tax)</span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="co"># q_nondac_demand_tax</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a></span>
+<span id="cb36-4"><a href="#cb36-4"></a>nondac_cs_tax <span class="ot">=</span> pracma<span class="sc">::</span><span class="fu">integral</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">nondac_demand_fn</span>(x), <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> q_nondac_demand_tax) <span class="sc">-</span> (q_nondac_demand_tax<span class="sc">*</span>p_star_tax)</span>
+<span id="cb36-5"><a href="#cb36-5"></a>nondac_cs_tax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1673553441</code></pre>
+</div>
+</div>
+<p>The overall welfare of non-DAC consumers is $1,673,553,441.</p>
+</section>
+<section id="d" class="level4">
+<h4 class="anchored" data-anchor-id="d">(d)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>q_dac_demand_tax <span class="ot">=</span> <span class="fu">dac_demand_fn_q_from_p</span>(p_star_tax)</span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="co">#q_dac_demand_tax</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a></span>
+<span id="cb38-4"><a href="#cb38-4"></a>dac_cs_tax <span class="ot">=</span> pracma<span class="sc">::</span><span class="fu">integral</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dac_demand_fn</span>(x), <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> q_dac_demand_tax) <span class="sc">-</span> (q_dac_demand_tax<span class="sc">*</span>p_star_tax <span class="sc">+</span> mec_per_ev<span class="sc">*</span>q_star_tax)</span>
+<span id="cb38-5"><a href="#cb38-5"></a>dac_cs_tax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -593228313</code></pre>
+</div>
+</div>
+<p>The overall welfare of DAC consumers is -$593,228,313.</p>
+</section>
+<section id="e" class="level4">
+<h4 class="anchored" data-anchor-id="e">(e)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>ps_tax <span class="ot">=</span> (q_star_tax<span class="sc">*</span>(p_star_tax <span class="sc">-</span> mec_per_ev)) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>ps_tax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 941088549</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># ps_tax - ps</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The tax decreased producer surplus by $300,700,669 for a new value of $941,088,549.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co">#Plot that shows aggregate demand, demand for both groups of consumers, MSC curve, MEC curve, and P*. This was used for our own visualization and understanding.</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a></span>
+<span id="cb43-3"><a href="#cb43-3"></a></span>
+<span id="cb43-4"><a href="#cb43-4"></a></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="co"># ggplot()  +</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a><span class="co">#   geom_line(data = ev_agg_demand, aes(x = q_dac_fitted, y = price_dollars)) + </span></span>
+<span id="cb43-7"><a href="#cb43-7"></a><span class="co">#   geom_line(data = ev_agg_demand, aes(x = q_nondac_fitted, y = price_dollars))  +</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a><span class="co">#   geom_line(data = ev_agg_demand, aes(x = q_agg, y = price_dollars))  +</span></span>
+<span id="cb43-9"><a href="#cb43-9"></a><span class="co">#   geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = price_dollars))  +</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a><span class="co">#   geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = mec_per_ev))  +</span></span>
+<span id="cb43-11"><a href="#cb43-11"></a><span class="co">#   geom_line(data = ev_agg_demand_tax, aes(x = q_msc_supply, y = p_star_tax))  +</span></span>
+<span id="cb43-12"><a href="#cb43-12"></a><span class="co">#   xlim(0, 80000) +</span></span>
+<span id="cb43-13"><a href="#cb43-13"></a><span class="co">#   theme_bw()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="f" class="level4">
+<h4 class="anchored" data-anchor-id="f">(f)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>env_damage_tax <span class="ot">=</span> mec_per_ev <span class="sc">*</span> q_star_tax</span>
+<span id="cb44-2"><a href="#cb44-2"></a>env_damage_tax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 817261391</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="co">#env_damage_tax - env_cost_q_star_no_int</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The total environmental damage decreased by $121,531,258 for a new value of $817,261,391.</p>
+</section>
+<section id="g" class="level4">
+<h4 class="anchored" data-anchor-id="g">(g)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>tax_revenue_tax <span class="ot">=</span> mec_per_ev <span class="sc">*</span> q_star_tax</span>
+<span id="cb47-2"><a href="#cb47-2"></a>tax_revenue_tax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 817261391</code></pre>
+</div>
+</div>
+<p>The tax generated a revenue of $817,261,391.</p>
+</section>
+</section>
+<section id="section-5" class="level3">
+<h3 class="anchored" data-anchor-id="section-5">6.</h3>
+<section id="a-b-c" class="level4">
+<h4 class="anchored" data-anchor-id="a-b-c">(a), (b), (c)</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>supply_variable_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q, tax){</span>
+<span id="cb49-2"><a href="#cb49-2"></a>  P <span class="ot">=</span> <span class="fu">supply_fn</span>(Q) <span class="sc">+</span> tax</span>
+<span id="cb49-3"><a href="#cb49-3"></a>  <span class="fu">return</span>(P)</span>
+<span id="cb49-4"><a href="#cb49-4"></a>}</span>
+<span id="cb49-5"><a href="#cb49-5"></a></span>
+<span id="cb49-6"><a href="#cb49-6"></a>demand_less_price_tax_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb49-7"><a href="#cb49-7"></a>  Z <span class="ot">=</span> <span class="fu">agg_demand_fn</span>(Q) <span class="sc">-</span> <span class="fu">supply_tax_fn</span>(Q)</span>
+<span id="cb49-8"><a href="#cb49-8"></a>  <span class="fu">return</span>(Z)</span>
+<span id="cb49-9"><a href="#cb49-9"></a>}</span>
+<span id="cb49-10"><a href="#cb49-10"></a></span>
+<span id="cb49-11"><a href="#cb49-11"></a></span>
+<span id="cb49-12"><a href="#cb49-12"></a>dac_pretax_q_percent <span class="ot">=</span> dac_q_star_no_int <span class="sc">/</span> q_star_no_int</span>
+<span id="cb49-13"><a href="#cb49-13"></a>nondac_pretax_q_percent <span class="ot">=</span> nondac_q_star_no_int <span class="sc">/</span> q_star_no_int</span>
+<span id="cb49-14"><a href="#cb49-14"></a></span>
+<span id="cb49-15"><a href="#cb49-15"></a></span>
+<span id="cb49-16"><a href="#cb49-16"></a></span>
+<span id="cb49-17"><a href="#cb49-17"></a>welfare_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(battery_damage) {</span>
+<span id="cb49-18"><a href="#cb49-18"></a>  </span>
+<span id="cb49-19"><a href="#cb49-19"></a>  opt_tax <span class="ot">=</span> battery_damage <span class="sc">*</span> <span class="dv">63</span></span>
+<span id="cb49-20"><a href="#cb49-20"></a>  </span>
+<span id="cb49-21"><a href="#cb49-21"></a>  welfare_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb49-22"><a href="#cb49-22"></a>  </span>
+<span id="cb49-23"><a href="#cb49-23"></a>  <span class="co"># supply function</span></span>
+<span id="cb49-24"><a href="#cb49-24"></a>  supply_variable_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb49-25"><a href="#cb49-25"></a>    P <span class="ot">=</span> <span class="fu">supply_fn</span>(Q) <span class="sc">+</span> opt_tax</span>
+<span id="cb49-26"><a href="#cb49-26"></a>    <span class="fu">return</span>(P)</span>
+<span id="cb49-27"><a href="#cb49-27"></a>  }</span>
+<span id="cb49-28"><a href="#cb49-28"></a>  </span>
+<span id="cb49-29"><a href="#cb49-29"></a>  <span class="co"># net demand function</span></span>
+<span id="cb49-30"><a href="#cb49-30"></a>  demand_less_price_variable_fn <span class="ot">&lt;-</span> <span class="cf">function</span>(Q){</span>
+<span id="cb49-31"><a href="#cb49-31"></a>    Z <span class="ot">=</span> <span class="fu">agg_demand_fn</span>(Q) <span class="sc">-</span> <span class="fu">supply_variable_fn</span>(Q)</span>
+<span id="cb49-32"><a href="#cb49-32"></a>    <span class="fu">return</span>(Z)</span>
+<span id="cb49-33"><a href="#cb49-33"></a>  }</span>
+<span id="cb49-34"><a href="#cb49-34"></a>  </span>
+<span id="cb49-35"><a href="#cb49-35"></a>  <span class="co"># equilibrium p and q</span></span>
+<span id="cb49-36"><a href="#cb49-36"></a>  q_star_variable <span class="ot">=</span> <span class="fu">fzero</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">demand_less_price_variable_fn</span>(x), <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>))<span class="sc">$</span>x</span>
+<span id="cb49-37"><a href="#cb49-37"></a>  p_star_variable <span class="ot">=</span> <span class="fu">agg_demand_fn</span>(q_star_variable)</span>
+<span id="cb49-38"><a href="#cb49-38"></a></span>
+<span id="cb49-39"><a href="#cb49-39"></a>  <span class="co"># q demanded by group</span></span>
+<span id="cb49-40"><a href="#cb49-40"></a>  q_nondac_demand_variable <span class="ot">=</span> <span class="fu">nondac_demand_fn_q_from_p</span>(p_star_variable)</span>
+<span id="cb49-41"><a href="#cb49-41"></a>  q_dac_demand_variable <span class="ot">=</span> <span class="fu">dac_demand_fn_q_from_p</span>(p_star_variable)</span>
+<span id="cb49-42"><a href="#cb49-42"></a>  </span>
+<span id="cb49-43"><a href="#cb49-43"></a>  <span class="co"># consumer surplus</span></span>
+<span id="cb49-44"><a href="#cb49-44"></a>  nondac_cs_variable <span class="ot">=</span> pracma<span class="sc">::</span><span class="fu">integral</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">nondac_demand_fn</span>(x), <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> q_nondac_demand_variable) <span class="sc">-</span> (q_nondac_demand_variable<span class="sc">*</span>p_star_variable)</span>
+<span id="cb49-45"><a href="#cb49-45"></a>  dac_cs_variable <span class="ot">=</span> pracma<span class="sc">::</span><span class="fu">integral</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">dac_demand_fn</span>(x), <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> q_dac_demand_variable) <span class="sc">-</span> (q_dac_demand_variable<span class="sc">*</span>p_star_variable <span class="sc">+</span> opt_tax<span class="sc">*</span>q_star_variable)</span>
+<span id="cb49-46"><a href="#cb49-46"></a>  </span>
+<span id="cb49-47"><a href="#cb49-47"></a>  <span class="co"># producer surplus</span></span>
+<span id="cb49-48"><a href="#cb49-48"></a>  ps_variable <span class="ot">=</span> (q_star_variable<span class="sc">*</span>(p_star_variable <span class="sc">-</span> opt_tax)) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb49-49"><a href="#cb49-49"></a>  </span>
+<span id="cb49-50"><a href="#cb49-50"></a>  </span>
+<span id="cb49-51"><a href="#cb49-51"></a>  <span class="do">### add the revenue redistribution to each group</span></span>
+<span id="cb49-52"><a href="#cb49-52"></a>  tax_revenue_variable <span class="ot">=</span> opt_tax <span class="sc">*</span> q_star_variable</span>
+<span id="cb49-53"><a href="#cb49-53"></a></span>
+<span id="cb49-54"><a href="#cb49-54"></a>  dac_cs_variable <span class="ot">=</span> dac_cs_variable <span class="sc">+</span> (dac_pretax_q_percent <span class="sc">*</span> tax_revenue_variable)</span>
+<span id="cb49-55"><a href="#cb49-55"></a>  nondac_cs_variable <span class="ot">=</span> nondac_cs_variable <span class="sc">+</span> (nondac_pretax_q_percent <span class="sc">*</span> tax_revenue_variable)</span>
+<span id="cb49-56"><a href="#cb49-56"></a>  </span>
+<span id="cb49-57"><a href="#cb49-57"></a>  </span>
+<span id="cb49-58"><a href="#cb49-58"></a>  <span class="do">### produce output dataframe</span></span>
+<span id="cb49-59"><a href="#cb49-59"></a>  welfare_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(welfare_df, <span class="fu">data.frame</span>(<span class="at">damage_level =</span> battery_damage,</span>
+<span id="cb49-60"><a href="#cb49-60"></a>                                             <span class="at">q_eq =</span> q_star_variable,</span>
+<span id="cb49-61"><a href="#cb49-61"></a>                                             <span class="at">p_eq =</span> p_star_variable,</span>
+<span id="cb49-62"><a href="#cb49-62"></a>                                             <span class="at">nondac_cs =</span> nondac_cs_variable,</span>
+<span id="cb49-63"><a href="#cb49-63"></a>                                             <span class="at">dac_cs =</span> dac_cs_variable,</span>
+<span id="cb49-64"><a href="#cb49-64"></a>                                             <span class="at">ps =</span> ps_variable))</span>
+<span id="cb49-65"><a href="#cb49-65"></a>  </span>
+<span id="cb49-66"><a href="#cb49-66"></a>  <span class="fu">return</span>(welfare_df)</span>
+<span id="cb49-67"><a href="#cb49-67"></a>  </span>
+<span id="cb49-68"><a href="#cb49-68"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>damages_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">350</span>, <span class="dv">400</span>, <span class="dv">450</span>, <span class="dv">500</span>)</span>
+<span id="cb50-2"><a href="#cb50-2"></a></span>
+<span id="cb50-3"><a href="#cb50-3"></a>ev_welfare <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb50-4"><a href="#cb50-4"></a><span class="cf">for</span> (d <span class="cf">in</span> damages_list) {</span>
+<span id="cb50-5"><a href="#cb50-5"></a>  </span>
+<span id="cb50-6"><a href="#cb50-6"></a>  ev_welfare <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ev_welfare, <span class="fu">welfare_stats</span>(d))</span>
+<span id="cb50-7"><a href="#cb50-7"></a>  </span>
+<span id="cb50-8"><a href="#cb50-8"></a>}</span>
+<span id="cb50-9"><a href="#cb50-9"></a></span>
+<span id="cb50-10"><a href="#cb50-10"></a>ev_welfare <span class="ot">&lt;-</span> ev_welfare <span class="sc">%&gt;%</span> </span>
+<span id="cb50-11"><a href="#cb50-11"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(q_eq, p_eq))</span>
+<span id="cb50-12"><a href="#cb50-12"></a></span>
+<span id="cb50-13"><a href="#cb50-13"></a><span class="fu">kable</span>(ev_welfare,</span>
+<span id="cb50-14"><a href="#cb50-14"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">'Battery Damage per EV'</span>,  <span class="st">'Non-DAC CS'</span>, <span class="st">'DAC CS'</span>, <span class="st">'PS'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Battery Damage per EV</th>
+<th style="text-align: right;">Non-DAC CS</th>
+<th style="text-align: right;">DAC CS</th>
+<th style="text-align: right;">PS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">350</td>
+<td style="text-align: right;">2342374119</td>
+<td style="text-align: right;">-533239625</td>
+<td style="text-align: right;">895018275</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">400</td>
+<td style="text-align: right;">2356502793</td>
+<td style="text-align: right;">-633600598</td>
+<td style="text-align: right;">850104146</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">450</td>
+<td style="text-align: right;">2366825092</td>
+<td style="text-align: right;">-727935473</td>
+<td style="text-align: right;">806346161</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">2373341015</td>
+<td style="text-align: right;">-816244249</td>
+<td style="text-align: right;">763744320</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Within the table above, we see the welfare of DAC and non-DAC consumers as well as producers at the varying levels of environmental damage per kg of lithium in an EV battery. DAC welfare is negative, and all of non-DAC, DAC, and producer welfare decreases as the damage level increases despite redistribution of tax revenue to consumers.</p>
+</section>
+</section>
+<section id="section-6" class="level3">
+<h3 class="anchored" data-anchor-id="section-6">7.</h3>
+<section id="a-1" class="level4">
+<h4 class="anchored" data-anchor-id="a-1">(a)</h4>
+<p>Because gasoline cars contribute to climate change damages, and EV cars are meant to replace gasoline cars, the optimal EV tax would decrease if it considers the positive externality that results from each new EV car on the road.&nbsp;</p>
+</section>
+<section id="b-1" class="level4">
+<h4 class="anchored" data-anchor-id="b-1">(b)</h4>
+<p>The non-DAC community would be in favor of this new tax over to the tax that only accounts for mining. The damages from climate change via gasoline cars doesn’t impact them, and they also do not feel the environmental damages from mining, so even though a lower tax would increase the equillibrium quantity of EVs which is associated with more environmental damage, this doesn’t impact them so they pay less in taxes and enjoy the benefits.</p>
+</section>
+<section id="c-1" class="level4">
+<h4 class="anchored" data-anchor-id="c-1">(c)</h4>
+<p>The DAC consumers would be less likely to support the new lower tax, because it would result in less tax revenue overall to mitigate the environmental damages that fall the heaviest on them. They do not experience much of the benefits to climate change from the EV cars swapped for gasoline cars. The increased quantity would cause environmental damages that fall on the DAC community that are higher than any increase in consumer benefit.&nbsp;</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
